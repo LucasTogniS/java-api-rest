@@ -5,6 +5,8 @@ import br.com.demo.models.request.ProductRequiredDTO;
 import br.com.demo.models.response.ProductResponseDTO;
 import br.com.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +18,8 @@ public class ProductController {
     private ProductRepository repository;
 
     @GetMapping
-    public List<Product> getProducts(){ return repository.findAll();}
+    public Page<Product> getProducts(Pageable pageable){
+        return repository.findAll(pageable);}
 
     @GetMapping("/{id}")
     public ProductResponseDTO getProductById(@PathVariable Long id){
