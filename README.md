@@ -12,15 +12,15 @@ A classe Repository é responsável por gerenciar e interagir com o banco de dad
 dados da aplicação.
 
 ## URL
-GET - http://127.0.0.1:8081/api/products  
+GET - http://127.0.0.1:8081/api/products?page=0  
 GET - http://127.0.0.1:8081/api/products/1  
 DELETE - http://127.0.0.1:8081/api/products/1  
 POST - http://127.0.0.1:8081/api/products
 
 ## Exemplo do arquivo Json usado na requisição POST
 {
-"name": "Limpol",
-"description": "Detergente",
-"price": 1.69
+"name": "PS5",
+"description": "Console",
+"price": 4000
 }
 

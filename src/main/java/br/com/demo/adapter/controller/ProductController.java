@@ -7,6 +7,7 @@ import br.com.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,13 +23,14 @@ public class ProductController {
         return repository.findAll(pageable);}
 
     @GetMapping("/{id}")
-    public ProductResponseDTO getProductById(@PathVariable Long id){
-        ProductRequiredDTO productRequiredDTO = new ProductRequiredDTO(id);
-        var product = repository.findById(productRequiredDTO.getId()).orElse(null);
-        ProductResponseDTO productResponseDTO = new ProductResponseDTO(
-                product.getId(), product.getName(), product.getPrice()
-        );
-        return productResponseDTO;
+    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long id) {
+        return repository.findById(id)
+                .map(product -> ResponseEntity.ok(mapResponseDTO(product)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    private ProductResponseDTO mapResponseDTO(Product product) {
+        return new ProductResponseDTO(product.getId(), product.getName(), product.getPrice());
     }
 
     @PostMapping
