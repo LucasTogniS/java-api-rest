@@ -42,4 +42,16 @@ public class ProductController {
     public void deleteProduct(@PathVariable Long id){
         repository.deleteById(id);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductResponseDTO> putProduct(@PathVariable Long id, @RequestBody ProductResponseDTO update) {
+        return repository.findById(id)
+                .map(existeProduto -> {
+                    existeProduto.setName(update.getName());
+                    existeProduto.setPrice(update.getPrice());
+                    Product saveProduct = repository.save(existeProduto);
+                    return ResponseEntity.ok(mapResponseDTO(saveProduct));
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
