@@ -15,8 +15,8 @@ dados da aplicação.
 GET - http://127.0.0.1:8081/api/products?page=0  
 GET - http://127.0.0.1:8081/api/products/1  
 DELETE - http://127.0.0.1:8081/api/products/1  
-POST - http://127.0.0.1:8081/api/products
-PUT - http://127.0.0.1:8081/api/products/1
+POST - http://127.0.0.1:8081/api/products  
+PUT - http://127.0.0.1:8081/api/products/1  
 
 ## Exemplo do arquivo Json usado na requisição POST e PUT
 {  
